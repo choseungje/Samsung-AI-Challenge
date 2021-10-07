@@ -226,63 +226,63 @@ scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max, eta_min
 
 loss_plot, val_loss_plot = [], []
 
-# for epoch in range(EPOCHS):
-#     total_loss, total_val_loss = 0, 0
+for epoch in range(EPOCHS):
+    total_loss, total_val_loss = 0, 0
     
-#     model.train()
-#     tqdm_dataset = tqdm(enumerate(train_dataloader))    
-#     for batch, batch_item in tqdm_dataset:
-#         img = batch_item['img'].to(device)
-#         label = batch_item['label'].to(device)        
+    model.train()
+    tqdm_dataset = tqdm(enumerate(train_dataloader))    
+    for batch, batch_item in tqdm_dataset:
+        img = batch_item['img'].to(device)
+        label = batch_item['label'].to(device)        
 
-#         optimizer.zero_grad()
-#         with torch.cuda.amp.autocast():
-#             output = model(img)
-#             loss = criterion(output, label)
-#         loss.backward()
-#         optimizer.step()
-#         scheduler.step()
+        optimizer.zero_grad()
+        with torch.cuda.amp.autocast():
+            output = model(img)
+            loss = criterion(output, label)
+        loss.backward()
+        optimizer.step()
+        scheduler.step()
 
-#         total_loss += loss
+        total_loss += loss
         
-#         tqdm_dataset.set_postfix({
-#             'Epoch': epoch + 1,
-#             'Loss': '{:06f}'.format(loss.item()),
-#             'Total Loss' : '{:06f}'.format(total_loss/(batch+1))
-#         })
-#     loss_plot.append(total_loss/(batch+1))
+        tqdm_dataset.set_postfix({
+            'Epoch': epoch + 1,
+            'Loss': '{:06f}'.format(loss.item()),
+            'Total Loss' : '{:06f}'.format(total_loss/(batch+1))
+        })
+    loss_plot.append(total_loss/(batch+1))
     
-#     model.eval()
-#     tqdm_dataset = tqdm(enumerate(val_dataloader))
-#     for batch, batch_item in tqdm_dataset:
-#         img = batch_item['img'].to(device)
-#         label = batch_item['label'].to(device)
-#         with torch.no_grad():
-#             output = model(img)
-#             loss = criterion(output, label)
-#         total_val_loss += loss
+    model.eval()
+    tqdm_dataset = tqdm(enumerate(val_dataloader))
+    for batch, batch_item in tqdm_dataset:
+        img = batch_item['img'].to(device)
+        label = batch_item['label'].to(device)
+        with torch.no_grad():
+            output = model(img)
+            loss = criterion(output, label)
+        total_val_loss += loss
         
-#         tqdm_dataset.set_postfix({
-#             'Epoch': epoch + 1,
-#             'Val Loss': '{:06f}'.format(loss.item()),
-#             'Total Val Loss' : '{:06f}'.format(total_val_loss/(batch+1))
-#         })
-#     val_loss_plot.append(total_val_loss/(batch+1))
+        tqdm_dataset.set_postfix({
+            'Epoch': epoch + 1,
+            'Val Loss': '{:06f}'.format(loss.item()),
+            'Total Val Loss' : '{:06f}'.format(total_val_loss/(batch+1))
+        })
+    val_loss_plot.append(total_val_loss/(batch+1))
     
-#     if np.min(val_loss_plot) == val_loss_plot[-1]:
-#         torch.save(model, save_path)
+    if np.min(val_loss_plot) == val_loss_plot[-1]:
+        torch.save(model, save_path)
     
-#     """## 학습 결과"""
+    """## 학습 결과"""
 
-#     plt.plot(loss_plot, color='blue', label='train_loss')
-#     plt.plot(val_loss_plot, color='red', label='val_loss')
-#     plt.xlabel('epoch')
-#     plt.ylabel('loss(mae)')
-#     # plt.legend()
-#     # plt.show()
-#     plt.grid(True)
-#     plt.savefig('../output/seed_resnet200_3.png')
-#     print("Epoch {} min val loss {}".format(epoch + 1, min(val_loss_plot)))
+    plt.plot(loss_plot, color='blue', label='train_loss')
+    plt.plot(val_loss_plot, color='red', label='val_loss')
+    plt.xlabel('epoch')
+    plt.ylabel('loss(mae)')
+    # plt.legend()
+    # plt.show()
+    plt.grid(True)
+    plt.savefig('../output/seed_resnet200_3.png')
+    print("Epoch {} min val loss {}".format(epoch + 1, min(val_loss_plot)))
 
 
 
@@ -341,16 +341,3 @@ submission
 
 submission.to_csv('../output/seed_resnet200_3_tta.csv', index=False)
 print("create csv")
-# """제출 API 사용법 => https://dacon.io/forum/403557"""
-
-# from dacon_submit_api import dacon_submit_api 
-
-# result = dacon_submit_api.post_submission_file(
-#     'dacon_baseline.csv', 
-#     '개인 Token', 
-#     '235789', 
-#     'DACONIO', 
-#     'DACON_Baseline'
-# )
-
-# Epoch 85 min val loss 0.11804
