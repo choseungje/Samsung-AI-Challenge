@@ -342,16 +342,3 @@ submission
 
 submission.to_csv('../output/seed_resnet200_3_not90_tta.csv', index=False)
 print("create csv")
-# """제출 API 사용법 => https://dacon.io/forum/403557"""
-
-# from dacon_submit_api import dacon_submit_api 
-
-# result = dacon_submit_api.post_submission_file(
-#     'dacon_baseline.csv', 
-#     '개인 Token', 
-#     '235789', 
-#     'DACONIO', 
-#     'DACON_Baseline'
-# )
-
-# Epoch 85 min val loss 0.11804
