@@ -7,7 +7,10 @@ docker pull wean1030/samsung-ai-challenge:init
 ---
 
 ## Architecture
-이미지 삽입
+### 1. Base Model
+![base_model](./base_model.jpg)
+### 2. Model Architecture
+![ensemble](./model_architecture.jpg)
 ---
 
 ## Languages and frameworks used
@@ -23,7 +26,7 @@ Python, Pytorch, Docker
 3. Small Batch Training
 4. Data Augmentation
 5. Soft Voting (Ensemble)
-6. Seed Ensemble
+6. Seed Ensemble (used for experiment, but didn't used in final submission)
 7. ResNet, NfNet, VisionTransformer, EfficientNet
 ~~~
 ---
