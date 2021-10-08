@@ -26,7 +26,7 @@ Python, Pytorch, Docker
 3. Small Batch Training
 4. Data Augmentation
 5. Soft Voting (Ensemble)
-6. Seed Ensemble (used for experiment, but doesn't used in final submission)
+6. Seed Ensemble (used for experiment, but didn't used in final submission)
 7. ResNet, NfNet, VisionTransformer, EfficientNet
 ~~~
 ---
