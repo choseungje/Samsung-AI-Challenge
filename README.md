@@ -9,8 +9,8 @@ docker pull wean1030/samsung-ai-challenge:init
 ## Architecture
 ### 1. Base Model
 ![base_model](./base_model.jpg)
-### 2. Ensemble
-![ensemble](./model_ensemble.jpg)
+### 2. Model Architecture
+![ensemble](./model_architecture.jpg)
 ---
 
 ## Languages and frameworks used
